@@ -105,6 +105,7 @@
             this.btnClearEntry.TabIndex = 20;
             this.btnClearEntry.Text = "CE";
             this.btnClearEntry.UseVisualStyleBackColor = false;
+            this.btnClearEntry.Click += new System.EventHandler(this.btnClearEntry_Click);
             // 
             // btnClear
             // 
@@ -117,6 +118,7 @@
             this.btnClear.TabIndex = 19;
             this.btnClear.Text = "C";
             this.btnClear.UseVisualStyleBackColor = false;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // btnDivision
             // 

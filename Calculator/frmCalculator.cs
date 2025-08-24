@@ -38,6 +38,17 @@ namespace Calculator
         #endregion
 
         #region "Event Handlers"
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            _operations.Clear();
+            ResetCurrentState();
+        }
+
+        private void btnClearEntry_Click(object sender, EventArgs e)
+        {
+            ResetCurrentState();
+        }
+
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -109,8 +120,7 @@ namespace Calculator
 
         private void frmCalculator_Load(object sender, EventArgs e)
         {
-            CurrentValue = 0M;
-            _currentOperator = OperatorType.Plus;
+            ResetCurrentState();
         }
 
         public void NumberPress(object sender, EventArgs e)
@@ -165,6 +175,14 @@ namespace Calculator
                         break;
                 }
             }
+        }
+        #endregion
+
+        #region "Methods"
+        private void ResetCurrentState()
+        {
+            CurrentValue = 0M;
+            _currentOperator = OperatorType.Plus;
         }
         #endregion
     }
