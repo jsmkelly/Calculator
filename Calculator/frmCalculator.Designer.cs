@@ -342,7 +342,6 @@
             this.Name = "frmCalculator";
             this.Text = "Calculator";
             this.Load += new System.EventHandler(this.frmCalculator_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmCalculator_KeyDown);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmCalculator_KeyPress);
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);

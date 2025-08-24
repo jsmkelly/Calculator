@@ -21,7 +21,7 @@ namespace Calculator
             Subtract,
             Multiply,
             Divide,
-            Modular
+            Equal
         }
 
         public OperatorType Operator { get; set; } = OperatorType.None;

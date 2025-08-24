@@ -67,13 +67,14 @@ namespace Calculator
 
             //clear everything prior to the equal to avoid duplicate calculations
             _operations.Clear();
-            _currentOperator = OperatorType.Plus;
+            _currentOperator = OperatorType.Equal;
 
             //handles the calculation of each operation, but it is only needed for the equal button
             decimal Calculate(OperatorType oper, decimal amt)
             {
                 switch (oper)
                 {
+                    case OperatorType.Equal:
                     case OperatorType.Plus:
                         result += amt;
                         break;
@@ -100,16 +101,6 @@ namespace Calculator
                             result /= amt;
                         }
                         break;
-                    case OperatorType.Modular:
-                        if (result == 0M)
-                        {
-                            result = amt;
-                        }
-                        else if (amt != 0M)
-                        {
-                            result %= amt;
-                        }
-                        break;
                 }
 
                 return result;
@@ -120,69 +111,6 @@ namespace Calculator
         {
             ResetCurrentState();
         }
-
-        public void NumberPress(object sender, EventArgs e)
-        {
-            //Should be a button but just making sure
-            if (sender is Button)
-            {
-                Button btn = sender as Button;
-                if (!btn.Text.Trim().Contains(".") & !txtValue.Text.Trim().Contains("."))
-                {
-                    CurrentValue = (CurrentValue * 10M) + decimal.Parse(btn.Text.Trim());
-                }
-                else if (btn.Text.Trim().Contains("."))
-                {
-                    CurrentValue = CurrentValue + 0.0M;
-                }
-                else
-                {
-                    CurrentValue = decimal.Parse(CurrentValue.ToString().Split('.')[0] + "." +
-                                   CurrentValue.ToString().Split('.')[1].TrimEnd('0') + btn.Text.Trim());
-                }
-            }
-        }
-
-        public void OperatorPress(object sender, EventArgs e)
-        {
-            //Should be a button but just making sure
-            if (sender is Button)
-            {
-                _operations.Add(new Operation(_currentOperator, CurrentValue));
-                CurrentValue = 0M;
-
-                Button btn = sender as Button;
-                switch (btn.Text.Trim())
-                {
-                    case "+":
-                        _currentOperator = OperatorType.Plus;
-                        break;
-                    case "-":
-                        _currentOperator = OperatorType.Subtract;
-                        break;
-                    case "*":
-                        _currentOperator = OperatorType.Multiply;
-                        break;
-                    case "/":
-                        _currentOperator = OperatorType.Divide;
-                        break;
-                    case "%":
-                        _currentOperator = OperatorType.Modular;
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
-        #endregion
-
-        #region "Methods"
-        private void ResetCurrentState()
-        {
-            CurrentValue = 0M;
-            _currentOperator = OperatorType.Plus;
-        }
-        #endregion
 
         private void frmCalculator_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -217,5 +145,75 @@ namespace Calculator
                     break;
             }
         }
+
+        public void NumberPress(object sender, EventArgs e)
+        {
+            //Should be a button but just making sure
+            if (sender is Button)
+            {
+                Button btn = sender as Button;
+                //if the last operation was not an equal, process normally
+                if (_currentOperator != OperatorType.Equal)
+                {
+                    if (!btn.Text.Trim().Contains(".") & !txtValue.Text.Trim().Contains("."))
+                    {
+                        CurrentValue = (CurrentValue * 10M) + decimal.Parse(btn.Text.Trim());
+                    }
+                    else if (btn.Text.Trim().Contains("."))
+                    {
+                        CurrentValue = CurrentValue + 0.0M;
+                    }
+                    else
+                    {
+                        CurrentValue = decimal.Parse(CurrentValue.ToString().Split('.')[0] + "." +
+                                       CurrentValue.ToString().Split('.')[1].TrimEnd('0') + btn.Text.Trim());
+                    }
+                }
+                else
+                {//after an equal, reset the current value to the new number pressed
+                    _operations.Add(new Operation(_currentOperator, CurrentValue));
+                    CurrentValue = decimal.Parse(btn.Text.Trim());
+                    _currentOperator = OperatorType.Plus;
+                }
+            }
+        }
+
+        public void OperatorPress(object sender, EventArgs e)
+        {
+            //Should be a button but just making sure
+            if (sender is Button)
+            {
+                _operations.Add(new Operation(_currentOperator, CurrentValue));
+                CurrentValue = 0M;
+
+                Button btn = sender as Button;
+                switch (btn.Text.Trim())
+                {
+                    case "+":
+                        _currentOperator = OperatorType.Plus;
+                        break;
+                    case "-":
+                        _currentOperator = OperatorType.Subtract;
+                        break;
+                    case "*":
+                        _currentOperator = OperatorType.Multiply;
+                        break;
+                    case "/":
+                        _currentOperator = OperatorType.Divide;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+        #endregion
+
+        #region "Methods"
+        private void ResetCurrentState()
+        {
+            CurrentValue = 0M;
+            _currentOperator = OperatorType.Plus;
+        }
+        #endregion
     }
 }
