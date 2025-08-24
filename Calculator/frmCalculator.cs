@@ -38,6 +38,11 @@ namespace Calculator
         #endregion
 
         #region "Event Handlers"
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
         private void Equal(object sender, EventArgs e)
         {
             decimal result = 0M;

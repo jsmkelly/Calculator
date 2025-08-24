@@ -30,7 +30,7 @@
         {
             this.txtValue = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnCe = new System.Windows.Forms.Button();
+            this.btnClearEntry = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnDivision = new System.Windows.Forms.Button();
             this.btnMultiply = new System.Windows.Forms.Button();
@@ -48,6 +48,7 @@
             this.btn3 = new System.Windows.Forms.Button();
             this.btn2 = new System.Windows.Forms.Button();
             this.btn1 = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,17 +60,17 @@
             this.txtValue.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.txtValue.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtValue.Font = new System.Drawing.Font("HP Simplified", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtValue.Location = new System.Drawing.Point(19, 8);
+            this.txtValue.Location = new System.Drawing.Point(19, 43);
             this.txtValue.Multiline = true;
             this.txtValue.Name = "txtValue";
             this.txtValue.ReadOnly = true;
             this.txtValue.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtValue.Size = new System.Drawing.Size(418, 37);
+            this.txtValue.Size = new System.Drawing.Size(418, 65);
             this.txtValue.TabIndex = 0;
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btnCe);
+            this.groupBox1.Controls.Add(this.btnClearEntry);
             this.groupBox1.Controls.Add(this.btnClear);
             this.groupBox1.Controls.Add(this.btnDivision);
             this.groupBox1.Controls.Add(this.btnMultiply);
@@ -87,23 +88,23 @@
             this.groupBox1.Controls.Add(this.btn3);
             this.groupBox1.Controls.Add(this.btn2);
             this.groupBox1.Controls.Add(this.btn1);
-            this.groupBox1.Location = new System.Drawing.Point(8, 46);
+            this.groupBox1.Location = new System.Drawing.Point(8, 114);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(435, 561);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             // 
-            // btnCe
+            // btnClearEntry
             // 
-            this.btnCe.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnCe.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnCe.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCe.Location = new System.Drawing.Point(329, 71);
-            this.btnCe.Name = "btnCe";
-            this.btnCe.Size = new System.Drawing.Size(100, 48);
-            this.btnCe.TabIndex = 20;
-            this.btnCe.Text = "Ce";
-            this.btnCe.UseVisualStyleBackColor = false;
+            this.btnClearEntry.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnClearEntry.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnClearEntry.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClearEntry.Location = new System.Drawing.Point(329, 71);
+            this.btnClearEntry.Name = "btnClearEntry";
+            this.btnClearEntry.Size = new System.Drawing.Size(100, 48);
+            this.btnClearEntry.TabIndex = 20;
+            this.btnClearEntry.Text = "CE";
+            this.btnClearEntry.UseVisualStyleBackColor = false;
             // 
             // btnClear
             // 
@@ -314,11 +315,25 @@
             this.btn1.UseVisualStyleBackColor = true;
             this.btn1.Click += new System.EventHandler(this.NumberPress);
             // 
+            // btnClose
+            // 
+            this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnClose.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.Location = new System.Drawing.Point(388, 3);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(49, 34);
+            this.btnClose.TabIndex = 21;
+            this.btnClose.Text = "X";
+            this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
             // frmCalculator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(455, 619);
+            this.ClientSize = new System.Drawing.Size(455, 682);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.txtValue);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -351,7 +366,8 @@
         private System.Windows.Forms.Button btnDivision;
         private System.Windows.Forms.Button btnMultiply;
         private System.Windows.Forms.Button btnMinus;
-        private System.Windows.Forms.Button btnCe;
+        private System.Windows.Forms.Button btnClearEntry;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Button btnClose;
     }
 }
