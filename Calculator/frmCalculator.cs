@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.Eventing.Reader;
-using System.Linq;
 using System.Windows.Forms;
 using static Calculator.Operation;
 
@@ -185,5 +183,39 @@ namespace Calculator
             _currentOperator = OperatorType.Plus;
         }
         #endregion
+
+        private void frmCalculator_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            switch (e.KeyChar)
+            {
+                case '0':
+                case '1':
+                case '2':
+                case '3':
+                case '4':
+                case '5':
+                case '6':
+                case '7':
+                case '8':
+                case '9':
+                case '.':
+                    NumberPress(sender, e);
+                    break;
+                case '+':
+                case '-':
+                case '*':
+                case '/':
+                case '%':
+                    OperatorPress(sender, e);
+                    break;
+                case '=':
+                case (char)Keys.Enter:
+                    Equal(sender, e);
+                    break;
+                case (char)Keys.Escape:
+                    btnClear_Click(sender, e);
+                    break;
+            }
+        }
     }
 }
